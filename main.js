@@ -12,14 +12,14 @@ const footer = document.getElementById("footer");
 
 async function load_index(i) {
 	if(index_cache[i] !== undefined) return index_cache[i];
-	const resource = fetch("/index/"+i).then((x) => x.arrayBuffer())
+	const resource = fetch("index/"+i).then((x) => x.arrayBuffer())
 	const result = new Uint32Array(await resource);
 	index_cache[i] = result;
 	return result;
 }
 
 function load_block(i) {
-	return fetch("/blocks/"+i).then((x) => x.json())
+	return fetch("blocks/"+i).then((x) => x.json())
 }
 
 function ngram_code(data, start, length) {
