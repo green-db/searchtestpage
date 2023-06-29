@@ -131,7 +131,7 @@ def rebuild_page(
 }}
 
 #footer {{
-	height:80vh;
+	height:90vh;
 }}
 
 </style>
@@ -153,7 +153,7 @@ def rebuild_page(
 
 <body>
 
-<textarea id='search_field' placeholder="consume"></textarea>
+<textarea id='search_field' placeholder="hi"></textarea>
 <div id='stuff'></div>
 <div id='footer'></div>
 
