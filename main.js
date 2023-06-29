@@ -62,9 +62,10 @@ function render_text(tag, text) {
 	stuff.appendChild(node);
 }
 
-function render_product(i, product) {
+function render_product(i, product, matches, total) {
 	render_text("h2", '#' + i + ' ' + product.name);
 	render_text("h4", product.brand);
+	render_text("p", 'matched '+matches+'/'+total+' n-grams');
 	render_text("p", product.description);
 }
 
@@ -113,8 +114,6 @@ async function do_search(ev) {
 		const value = unique_ngrams.size - h;
 		const width = Math.ceil(Math.log2(unique_ngrams.size + 1)) | 0;
 		
-		render_text("h1", "matching "+value+"/"+unique_ngrams.size+" ngrams");
-		
 		for(let i = 0; i < indices[0].length; i++) {
 			const counter = new Uint32Array(width);
 			
@@ -136,7 +135,7 @@ async function do_search(ev) {
 			
 			for(let j = 0; j < 32; j++)
 			if((mask>>j)&1)
-				render_product(i*32 + j, block[j]);
+				render_product(i*32 + j, block[j], value, unique_ngrams.size);
 		}
 	}
 }
